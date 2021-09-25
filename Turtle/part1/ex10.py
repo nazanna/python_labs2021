@@ -1,4 +1,5 @@
 import turtle
+
 turtle.speed(0)
 
 def draw_circ(a, n=60):
