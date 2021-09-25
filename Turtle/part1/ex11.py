@@ -1,8 +1,7 @@
 import turtle
 
-def draw_circ(a):
+def draw_circ(a, n=60):
     a *= 0.01
-    n = 60
     phi = 360 / n
     for i in range(n):
         turtle.forward(a)
