@@ -1,9 +1,7 @@
 import turtle
-import math
-
 
 def draw_circ(a):
-    a = a * 0.01
+    a *= 0.01
     n = 60
     phi = 360 / n
     for i in range(n):
