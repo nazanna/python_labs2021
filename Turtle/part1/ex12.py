@@ -1,10 +1,7 @@
 import turtle
-import math
 
-
-def draw_half_circ(a):
+def draw_half_circ(a, n=60):
     a = a * 0.01
-    n = 60
     phi = 360 / n
     for i in range(n//2):
         turtle.forward(a)
