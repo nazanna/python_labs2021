@@ -1,5 +1,6 @@
 import turtle
 import time
+
 x = -800
 y = 0
 vx = 30
@@ -7,7 +8,7 @@ vy = 80
 dt = 0.1
 g = -10
 ey = 0.9
-ex = cd0.9
+ex = 0.9
 k = -0.02
 turtle.speed(1000)
 turtle.goto(1000, 0)
