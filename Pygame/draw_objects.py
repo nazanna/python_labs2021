@@ -101,7 +101,7 @@ def draw_house(surface, x0=0, y0=0, scale=1, alpha=255):
     yellow_window = (212, 170, 0, alpha)
     skin_window = (72, 62, 55, alpha)
     black_roof = (0, 0, 0, alpha)
-    grey_fence = (26, 26, 26, alpha)
+    grey_fence = (26, 26, 26, 255)
 
 
     rect_scale(surface, brown_building, (40, 150, 410, 570), x0, y0, scale)
@@ -138,8 +138,6 @@ def draw_ghost(surface, x0=0, y0=0, scale=1, alpha=255, reversed=False):
 
     circle_scale(surface, grey_ghost, (90, 35), 35, x0, y0, scale, reversed=reversed)
 
-    
-    
     polygon_scale(surface, grey_ghost, ghost_body_coords, x0, y0, scale, reversed=reversed)
    
     circle_scale(surface, eye_blue_ghost, (71, 34), 10, x0, y0, scale, reversed=reversed)
