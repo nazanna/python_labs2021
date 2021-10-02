@@ -1,3 +1,3 @@
 # python_labs2021
 
-Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+Welcome ախպեր ջան!
