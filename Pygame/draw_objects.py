@@ -1,5 +1,5 @@
+import pygame
 import pygame.draw as draw
-
 
 ghost_body_coords = [(58, 48),
                    (53, 73),
@@ -43,6 +43,7 @@ def rect_scale(surface, color, coords, x0, y0, scale, width=0):
     y = y0 + y * scale
     w *= scale
     h *= scale
+
     draw.rect(surface, color, (x, y, w, h), width)
 
 
@@ -70,7 +71,7 @@ def circle_scale(surface, color, center, radius, x0, y0, scale, width=0, reverse
     draw.circle(surface, color, (x, y), radius * scale, width=0)
 
 
-def draw_house(surface, screen, x0=0, y0=0, scale=1, alpha=255):
+def draw_house(surface, x0=0, y0=0, scale=1, alpha=255):
 
     brown_building = (43, 34, 0, alpha)
     brown_window = (43, 17, 0, alpha)
@@ -105,10 +106,9 @@ def draw_house(surface, screen, x0=0, y0=0, scale=1, alpha=255):
     rect_scale(surface, grey_fence, (290, 70, 10, 30), x0, y0, scale)
     rect_scale(surface, grey_fence, (390, 45, 15, 85), x0, y0, scale)
 
-    screen.blit(surface, (0, 0))
 
 
-def draw_ghost(surface, screen, x0=0, y0=0, scale=1, alpha=255, reversed=False):
+def draw_ghost(surface, x0=0, y0=0, scale=1, alpha=255, reversed=False):
     grey_ghost = (179, 179, 179, alpha)
     eye_blue_ghost = (135, 205, 222, alpha)
     eye_black_ghost = (0, 0, 0, alpha)
@@ -128,5 +128,4 @@ def draw_ghost(surface, screen, x0=0, y0=0, scale=1, alpha=255, reversed=False):
     circle_scale(surface, eye_blue_ghost, (103, 26), 10, x0, y0, scale, reversed=reversed)
     circle_scale(surface, eye_whie_ghost, (103, 26), 5, x0, y0, scale, reversed=reversed)
     circle_scale(surface, eye_black_ghost, (100, 27), 4, x0, y0, scale, reversed=reversed)
-    
-    screen.blit(surface, (0, 0))
+

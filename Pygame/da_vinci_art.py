@@ -25,8 +25,8 @@ while not finished:
     draw.ellipse(screen, (77, 77, 77), (450, 150, 500, 80))
     draw.ellipse(screen, (26, 26, 26), (400, 240, 600, 80))
 
-    draw_house(surface, screen, x0=0, y0=97, scale=0.9)
-    draw_ghost(surface, screen, x0=500, y0=700, scale=1)
+    draw_house(screen, x0=0, y0=97, scale=0.9)
+    draw_ghost(screen, x0=500, y0=700, scale=1)
 
     pygame.display.update()
 
