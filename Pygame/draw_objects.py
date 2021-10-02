@@ -1,40 +1,7 @@
 import pygame
 import pygame.draw as draw
+from ghost_body import ghost_body_coords
 
-ghost_body_coords = [(58, 48),
-                   (53, 73),
-                   (42, 94),
-                   (37, 106),
-                   (26, 125),
-                   (20, 133),
-                   (14, 149),
-                   (2, 169),
-                   (1, 174),
-                   (19, 172),
-                   (34, 168),
-                   (52, 177),
-                   (65, 184),
-                   (81, 205),
-                   (92, 207),
-                   (97, 206),
-                   (107, 202),
-                   (118, 190),
-                   (132, 179),
-                   (144, 177),
-                   (157, 180),
-                   (179, 180),
-                   (186, 166),
-                   (192, 148),
-                   (199, 139),
-                   (210, 137),
-                   (223, 132),
-                   (226, 127),
-                   (226, 108),
-                   (221, 94),
-                   (212, 87),
-                   (194, 74),
-                   (139, 37),
-                   (120, 21),]
 
 def draw_rect_alpha(surface, color, rect, width=0):
     shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
@@ -84,14 +51,14 @@ def polygon_scale(surface, color, coords, x0, y0, scale, width=0, reversed=False
             x = x0 + x * scale
             y = y0 + y * scale
             coords_new.append((x, y))
-    draw_polygon_alpha(surface, color, coords_new, width=0)
+    draw_polygon_alpha(surface, color, coords_new, width)
 
 
 def circle_scale(surface, color, center, radius, x0, y0, scale, width=0, reversed=False):
     x, y = center
     x = x0 + (x * scale) * (1 - 2 * reversed)
     y = y0 + y * scale
-    draw_circle_alpha(surface, color, (x, y), radius * scale, width=0)
+    draw_circle_alpha(surface, color, (x, y), radius * scale, width)
 
 
 def draw_house(surface, x0=0, y0=0, scale=1, alpha=255):
@@ -136,9 +103,8 @@ def draw_ghost(surface, x0=0, y0=0, scale=1, alpha=255, reversed=False):
     eye_black_ghost = (0, 0, 0, alpha)
     eye_whie_ghost = (255, 255, 255, alpha)
 
-    circle_scale(surface, grey_ghost, (90, 35), 35, x0, y0, scale, reversed=reversed)
-
     polygon_scale(surface, grey_ghost, ghost_body_coords, x0, y0, scale, reversed=reversed)
+    polygon_scale(surface, (200, 200, 200), ghost_body_coords, x0, y0, scale, reversed=reversed, width=1)
    
     circle_scale(surface, eye_blue_ghost, (71, 34), 10, x0, y0, scale, reversed=reversed)
     circle_scale(surface, eye_whie_ghost, (71, 34), 5, x0, y0, scale, reversed=reversed)
