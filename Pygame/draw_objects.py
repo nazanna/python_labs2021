@@ -36,6 +36,29 @@ ghost_body_coords = [(58, 48),
                    (139, 37),
                    (120, 21),]
 
+def draw_rect_alpha(surface, color, rect, width=0):
+    shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+    draw.rect(shape_surf, color, shape_surf.get_rect(), width)
+    surface.blit(shape_surf, rect)
+
+def draw_circle_alpha(surface, color, center, radius, width=0):
+    target_rect = pygame.Rect(center, (0, 0)).inflate((radius * 2, radius * 2))
+    shape_surf = pygame.Surface(target_rect.size, pygame.SRCALPHA)
+    draw.circle(shape_surf, color, (radius, radius), radius, width)
+    surface.blit(shape_surf, target_rect)
+
+def draw_polygon_alpha(surface, color, points, width=0):
+    lx, ly = zip(*points)
+    min_x, min_y, max_x, max_y = min(lx), min(ly), max(lx), max(ly)
+    target_rect = pygame.Rect(min_x, min_y, max_x - min_x, max_y - min_y)
+    shape_surf = pygame.Surface(target_rect.size, pygame.SRCALPHA)
+    draw.polygon(shape_surf, color, [(x - min_x, y - min_y) for x, y in points], width)
+    surface.blit(shape_surf, target_rect)
+
+def draw_ellipse_alpha(surface, color, rect, width=0):
+    shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+    pygame.draw.ellipse(shape_surf, color, shape_surf.get_rect(), width)
+    surface.blit(shape_surf, rect)
 
 def rect_scale(surface, color, coords, x0, y0, scale, width=0):
     x, y, w, h = coords
@@ -44,7 +67,7 @@ def rect_scale(surface, color, coords, x0, y0, scale, width=0):
     w *= scale
     h *= scale
 
-    draw.rect(surface, color, (x, y, w, h), width)
+    draw_rect_alpha(surface, color, (x, y, w, h), width)
 
 
 def polygon_scale(surface, color, coords, x0, y0, scale, width=0, reversed=False):
@@ -61,14 +84,14 @@ def polygon_scale(surface, color, coords, x0, y0, scale, width=0, reversed=False
             x = x0 + x * scale
             y = y0 + y * scale
             coords_new.append((x, y))
-    draw.polygon(surface, color, coords_new, width=0)
+    draw_polygon_alpha(surface, color, coords_new, width=0)
 
 
 def circle_scale(surface, color, center, radius, x0, y0, scale, width=0, reversed=False):
     x, y = center
     x = x0 + (x * scale) * (1 - 2 * reversed)
     y = y0 + y * scale
-    draw.circle(surface, color, (x, y), radius * scale, width=0)
+    draw_circle_alpha(surface, color, (x, y), radius * scale, width=0)
 
 
 def draw_house(surface, x0=0, y0=0, scale=1, alpha=255):
@@ -105,7 +128,6 @@ def draw_house(surface, x0=0, y0=0, scale=1, alpha=255):
     rect_scale(surface, grey_fence, (120, 0 , 30, 130), x0, y0, scale)
     rect_scale(surface, grey_fence, (290, 70, 10, 30), x0, y0, scale)
     rect_scale(surface, grey_fence, (390, 45, 15, 85), x0, y0, scale)
-
 
 
 def draw_ghost(surface, x0=0, y0=0, scale=1, alpha=255, reversed=False):
