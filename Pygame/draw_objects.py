@@ -4,10 +4,11 @@ from ghost_body import ghost_body_coords
 
 def draw_rect(surface, color, rect, width = 0):
     """
-    surface - объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    rect - объект pygame.Rect
-    width = 0 - толщина обводки
+    draw rect
+    surface - object of pygame.Surface
+    color -color in format for pygame.Color
+    rect - object of pygame.Rect
+    width = 0 - stroke thickness
     """
     shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
     draw.rect(shape_surf, color, shape_surf.get_rect(), width)
@@ -15,11 +16,12 @@ def draw_rect(surface, color, rect, width = 0):
 
 def draw_circle(surface, color, center, radius, width = 0):
     '''
-    surface -  объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    center - координаты центра
-    radius - радиус
-    width = 0 - толщина обводки
+    draw circle
+    surface - object of pygame.Surface
+    color -color in format for pygame.Color
+    center - coordinates of center
+    radius - radius
+    width = 0 - stroke thickness
     '''
     
     target_rect = pygame.Rect(center, (0, 0)).inflate((radius * 2, radius * 2))
@@ -28,12 +30,13 @@ def draw_circle(surface, color, center, radius, width = 0):
     surface.blit(shape_surf, target_rect)
 
 def draw_polygon(surface, color, points, width = 0):
-    '''
-    surface -  объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    points - координаты точек
-    width = 0 - толщина обводки
-    '''   
+    """
+    draw polygon
+    surface - object of pygame.Surface
+    color -color in format for pygame.Color
+    rect - object of pygame.Rect
+    width = 0 - stroke thickness
+    """
     
     lx, ly = zip(*points)
     min_x, min_y, max_x, max_y = min(lx), min(ly), max(lx), max(ly)
@@ -43,25 +46,26 @@ def draw_polygon(surface, color, points, width = 0):
     surface.blit(shape_surf, target_rect)
 
 def draw_ellipse(surface, color, rect, width = 0):
-    '''
-    surface - объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    rect - объект pygame.Rect
-    width = 0 - толщина обводки
-    '''    
-    
+    """
+    draw ellipse
+    surface - object of pygame.Surface
+    color -color in format for pygame.Color
+    rect - object of pygame.Rect
+    width = 0 - stroke thickness
+    """
     shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
     pygame.draw.ellipse(shape_surf, color, shape_surf.get_rect(), width)
     surface.blit(shape_surf, rect)
 
 def rect_scale(surface, color, coords, x0, y0, scale, width = 0):
     '''
-    surface - объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    coords - левый верхний угол, ширина, высота
-    x0, y0 - перемещение левого верхнего угла
-    scale - изменение размера сторон
-    width = 0 - толщина обводки
+    set coordinates and draw rectangular
+    surface - object of pygame.Surface
+    color - color in format for pygame.Color
+    coords - upper left corner, width, height
+    x0, y0 - moving the figure
+    scale - changing the size of the sides
+    width = 0 - stroke thickness
     '''   
     
     x, y, w, h = coords
@@ -77,13 +81,14 @@ def rect_scale(surface, color, coords, x0, y0, scale, width = 0):
 
 def polygon_scale(surface, color, coords, x0, y0, scale, width = 0, reversed = False):
     '''
-    surface - объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    coords - координаты точек
-    x0, y0 - перемещение фигуры
-    scale - изменение размера сторон
-    width = 0 - толщина обводки
-    reversed = False - отражение относительно вертикали
+    set coordinates and draw polygon
+    surface - object of pygame.Surface
+    color -color in format for pygame.Color
+    coords - coordinates of points
+    x0, y0 - moving the figure
+    scale - changing the size of the sides
+    width = 0 - stroke thickness
+    reversed = False - reflection relative to the vertical
     '''
     
     coords_new = []
@@ -100,15 +105,15 @@ def polygon_scale(surface, color, coords, x0, y0, scale, width = 0, reversed = F
 
 def circle_scale(surface, color, center, radius, x0, y0, scale, width = 0, reversed = False):
     '''
-    surface - объект pygame.Surface
-    color - цвет, заданный в формате, подходящем для pygame.Color
-    center - координаты центра
-    radius - радиус
-    scale - изменение размера сторон
-    width = 0 - толщина обводки 
-    reversed = False - отражение относительно вертикали
-    '''
-    
+    set coordinates and draw circle
+    surface - object of pygame.Surface
+    color - color in format for pygame.Color
+    center - coordinates of center
+    radius - radius
+    scale - changing the size of the sides
+    width = 0 - stroke thickness
+    reversed = False - reflection relative to the vertical
+    '''    
     x, y = center
     x = x0 + (x * scale) * (1 - 2 * reversed)
     y = y0 + y * scale
@@ -120,10 +125,11 @@ def circle_scale(surface, color, center, radius, x0, y0, scale, width = 0, rever
 
 def draw_house(surface, x0 = 0, y0 = 0, scale = 1, alpha = 255):
     '''
-    surface - объект pygame.Surface
-    x0, y0 - перемещение фигуры
-    scale - изменение размера сторон
-    alpha = 255 - насыщенность цветов
+    draw house
+    surface - object of pygame.Surface
+    x0, y0 - moving figure
+    scale - changing the size of the sides
+    alpha = 255 - color saturation
     '''
     
     COLORS_HOUSE = {'brown_building': (43, 34, 0, alpha), 
@@ -162,12 +168,14 @@ def draw_house(surface, x0 = 0, y0 = 0, scale = 1, alpha = 255):
 
 def draw_ghost(surface, x0 = 0, y0 = 0, scale = 1, alpha = 255, reversed = False):
     '''
-    surface - объект pygame.Surface
-    x0, y0 - перемещение фигуры
-    scale - изменение размера сторон
-    alpha = 255 - насыщенность цветов
-    reversed = False - отражение относительно вертикали
+    draw ghost
+    surface - object of pygame.Surface
+    x0, y0 - moving figure
+    scale - changing the size of the sides
+    alpha = 255 - color saturation
+    reversed = False - reflection relative to the vertical
     '''
+    
     COLOR_GHOST = {'grey_ghost': (179, 179, 179, alpha),
     'eye_blue_ghost': (135, 205, 222, alpha),
     'eye_black_ghost': (0, 0, 0, alpha),
