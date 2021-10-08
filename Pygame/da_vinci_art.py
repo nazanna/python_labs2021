@@ -8,7 +8,7 @@ pygame.init()
 COLORS = {'black': (0, 0, 0),
           'white': (255, 255, 255),
           'light_white_grey': (102, 102, 102),
-#           'light_light_grey': (90, 90, 90, 127),
+          'light_light_grey': (90, 90, 90, 127),
           'dark_light_grey': (77, 77, 77),
           'light_medium_grey': (51, 51, 51),
           'medium_medium_grey': (50, 50, 50, 127),
